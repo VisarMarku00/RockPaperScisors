@@ -54,41 +54,85 @@ function playAgain() {
   }
 }
 
-//Create a function that runs 5 rounds of the game till there's a winner
-function game() {
-  let rounds = 5;
-  let humanWins = 0;
-  let pcWins = 0;
-
-  for (let i = 0; i < rounds; i++) {
-    let playerSelection = prompt("What is your choice?");
-    let computerSelection = getComputerChoice();
-
-    var result = playRound(playerSelection, computerSelection);
-
-    console.log(result);
-
-    if (result.includes("You win")) {
-      humanWins++;
-    }
-    if (result.includes("It's a draw")) {
-      i--;
-    }
-    if (result.includes("You loose!")) {
-      pcWins++;
-    }
+function displaySelection(selection, challenger) {
+  const choice = document.createTextNode(`${selection}`);
+  let displaySelection;
+  if (challenger === "computer") {
+    displaySelection = document.getElementById("computer-selection");
+  } else {
+    displaySelection = document.getElementById("player-selection");
   }
 
-  if (humanWins > pcWins) {
-    alert("You conquered the AI!!!!");
+  displaySelection.appendChild(choice);
+}
 
-    playAgain();
-    
-  } else {
-    alert("The AI revolution has begun");
+function clearSelectionText() {
+  let computerSelection = document.getElementById("computer-selection");
+  let playerSelection = document.getElementById("player-selection");
 
-    playAgain();
+  if (computerSelection.childNodes.length > 1) {
+    computerSelection.removeChild(computerSelection.lastChild);
+    playerSelection.removeChild(playerSelection.lastChild);
   }
 }
 
-console.log(game());
+function displayRoundResult(result){
+  
+}
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    clearSelectionText();
+
+    const playerSelection = button.textContent;
+    displaySelection(playerSelection, "player");
+
+    const computerSelection = getComputerChoice();
+    displaySelection(computerSelection, "computer");
+
+    const result = playRound(playerSelection, computerSelection);
+
+    console.log(result);
+  });
+});
+
+// //Create a function that runs 5 rounds of the game till there's a winner
+// function game() {
+//   let rounds = 5;
+//   let humanWins = 0;
+//   let pcWins = 0;
+
+//   for (let i = 0; i < rounds; i++) {
+//     let playerSelection = prompt("What is your choice?");
+//     let computerSelection = getComputerChoice();
+
+//     var result = playRound(playerSelection, computerSelection);
+
+//     console.log(result);
+
+//     if (result.includes("You win")) {
+//       humanWins++;
+//     }
+//     if (result.includes("It's a draw")) {
+//       i--;
+//     }
+//     if (result.includes("You loose!")) {
+//       pcWins++;
+//     }
+//   }
+
+//   if (humanWins > pcWins) {
+//     alert("You conquered the AI!!!!");
+
+//     playAgain();
+
+//   } else {
+//     alert("The AI revolution has begun");
+
+//     playAgain();
+//   }
+// }
+
+// console.log(game());
