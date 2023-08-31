@@ -77,7 +77,9 @@ function clearSelectionText() {
 }
 
 function displayRoundResult(result){
-  
+  const displayResult = document.getElementById("result")
+
+  displayResult.textContent = result;
 }
 
 const buttons = document.querySelectorAll("button");
@@ -94,7 +96,7 @@ buttons.forEach((button) => {
 
     const result = playRound(playerSelection, computerSelection);
 
-    console.log(result);
+    displayRoundResult(result);
   });
 });
 
