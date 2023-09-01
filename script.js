@@ -1,11 +1,15 @@
-//Random rock paper scissor function for computer
+const rounds = 5;
+let humanWins = 0;
+let pcWins = 0;
+const selectButtons = document.querySelectorAll(".select-button");
 
+//Random rock paper scissor function for computer
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
 function getComputerChoice() {
-  let powers = ["rock", "paper", "scissors"];
+  let powers = ["Rock", "Paper", "Scissors"];
   let max = 3;
 
   let choice = powers[getRandomInt(max)];
@@ -15,42 +19,32 @@ function getComputerChoice() {
 
 //Round function that compares computer and player choice
 function playRound(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase();
-
   if (playerSelection == computerSelection) {
     return "It's a draw!";
   }
 
-  if (playerSelection == "scissors") {
-    if (computerSelection == "paper") {
+  if (playerSelection == "Scissors") {
+    if (computerSelection == "Paper") {
       return "You win! Scissors beats paper.";
     } else {
       return "You loose! Rock beats scissors.";
     }
   }
 
-  if (playerSelection == "paper") {
-    if (computerSelection == "rock") {
+  if (playerSelection == "Paper") {
+    if (computerSelection == "Rock") {
       return "You win! Paper beats rock.";
     } else {
       return "You loose! Scissors beats paper.";
     }
   }
 
-  if (playerSelection == "rock") {
-    if (computerSelection == "scissors") {
+  if (playerSelection == "Rock") {
+    if (computerSelection == "Scissors") {
       return "You win! Rock beats scissors.";
     } else {
       return "You loose! Paper beats rock.";
     }
-  }
-}
-
-function playAgain() {
-  if (confirm("Play again?")) {
-    game();
-  } else {
-    alert("Ok don't play");
   }
 }
 
@@ -59,7 +53,8 @@ function displaySelection(selection, challenger) {
   let displaySelection;
   if (challenger === "computer") {
     displaySelection = document.getElementById("computer-selection");
-  } else {
+  }
+  if (challenger === "player") {
     displaySelection = document.getElementById("player-selection");
   }
 
@@ -76,15 +71,87 @@ function clearSelectionText() {
   }
 }
 
-function displayRoundResult(result){
-  const displayResult = document.getElementById("result")
+function addScore(challenger, wins) {
+  if (!challenger) {
+    let playerScore = document.getElementById("player");
+    let computerScore = document.getElementById("computer");
+
+    playerScore.textContent = "Player: 0";
+    computerScore.textContent = "Computer: 0";
+  } else {
+    if (challenger === "player") {
+      let playerScore = document.getElementById("player");
+
+      playerScore.textContent = "Player: " + wins;
+    }
+    if (challenger === "computer") {
+      let computerScore = document.getElementById("computer");
+      computerScore.textContent = "Computer: " + wins;
+    }
+  }
+}
+
+function displayRoundResult(result) {
+  const displayResult = document.getElementById("result");
 
   displayResult.textContent = result;
 }
 
-const buttons = document.querySelectorAll("button");
+function scoreCounter(roundResult) {
+  if (roundResult.includes("You win")) {
+    humanWins++;
+    addScore("player", humanWins);
+  }
+  if (roundResult.includes("You loose!")) {
+    pcWins++;
+    addScore("computer", pcWins);
+  }
+}
 
-buttons.forEach((button) => {
+function disableButtons(buttons) {
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
+}
+function enableButtons(buttons) {
+  buttons.forEach((button) => {
+    button.disabled = false;
+  });
+}
+
+function endGame() {
+  if (humanWins > pcWins) displayRoundResult("You conquered the AI!!!!");
+  displayRoundResult("The AI revolution has begun");
+}
+
+function createPlayAgainButton() {
+  const resultDiv = document.getElementById("result");
+
+  const button = document.createElement("button");
+
+  button.setAttribute("id", "play-again-button");
+
+  const buttonText = document.createTextNode("Play again!");
+
+  button.appendChild(buttonText);
+
+  resultDiv.appendChild(button);
+}
+
+function pressPlayAgainButton() {
+  const resultDiv = document.getElementById("result");
+  const button = document.getElementById("play-again-button");
+
+  button.addEventListener("click", () => {
+    humanWins = 0;
+    pcWins = 0;
+    addScore();
+    resultDiv.replaceChildren();
+    enableButtons(selectButtons);
+  });
+}
+
+selectButtons.forEach((button) => {
   button.addEventListener("click", () => {
     clearSelectionText();
 
@@ -96,45 +163,15 @@ buttons.forEach((button) => {
 
     const result = playRound(playerSelection, computerSelection);
 
+    scoreCounter(result);
+
     displayRoundResult(result);
+
+    if (humanWins === 3 || pcWins === 3) {
+      disableButtons(selectButtons);
+      endGame();
+      createPlayAgainButton();
+      pressPlayAgainButton();
+    }
   });
 });
-
-// //Create a function that runs 5 rounds of the game till there's a winner
-// function game() {
-//   let rounds = 5;
-//   let humanWins = 0;
-//   let pcWins = 0;
-
-//   for (let i = 0; i < rounds; i++) {
-//     let playerSelection = prompt("What is your choice?");
-//     let computerSelection = getComputerChoice();
-
-//     var result = playRound(playerSelection, computerSelection);
-
-//     console.log(result);
-
-//     if (result.includes("You win")) {
-//       humanWins++;
-//     }
-//     if (result.includes("It's a draw")) {
-//       i--;
-//     }
-//     if (result.includes("You loose!")) {
-//       pcWins++;
-//     }
-//   }
-
-//   if (humanWins > pcWins) {
-//     alert("You conquered the AI!!!!");
-
-//     playAgain();
-
-//   } else {
-//     alert("The AI revolution has begun");
-
-//     playAgain();
-//   }
-// }
-
-// console.log(game());
