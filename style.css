@@ -1,0 +1,145 @@
+@font-face {
+  font-family: "Garamond";
+  src: url("./fonts/garamond-classico-sc.ttf");
+  src: url("./fonts/garamond-classico-sc.ttf") format("truetype");
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  background-color: rgb(224, 243, 227);
+}
+
+#all-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: Garamond, serif;
+  color: transparent;
+  text-shadow: 0px 1.5px 2px rgba(16, 22, 10, 0.918);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+}
+
+#titles {
+  display: flex;
+  text-align: end;
+  justify-content: space-between;
+  margin: 0rem 2rem 10rem 2rem;
+
+  font-family: Garamond, serif;
+  color: transparent;
+  text-shadow: 2px 1px 1.5px rgba(25, 34, 15, 0.918);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+}
+
+.player-options {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 1rem;
+}
+
+.select-button {
+  font-family: Garamond, serif;
+  color: transparent;
+  text-shadow: 0px 1.5px 2px rgba(16, 22, 10, 0.918);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  background-color: transparent;
+  border-color: transparent;
+  font-size: 5em;
+  margin: 0em 0.5em 0em 0.5em;
+}
+
+.score {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0rem 0rem 3rem 0rem;
+}
+
+#player {
+  font-size: 3rem;
+  font-family: Garamond, serif;
+  color: transparent;
+  text-shadow: 0px 1.5px 2px rgba(16, 22, 10, 0.918);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+}
+
+#computer {
+  font-size: 3rem;
+  font-family: Garamond, serif;
+  color: transparent;
+  text-shadow: 0px 1.5px 2px rgba(16, 22, 10, 0.918);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+}
+
+.selections {
+  display: flex;
+  justify-content: center;
+}
+
+#player-selection {
+  margin: 0rem 1.8rem 0rem 1.8rem;
+  font-size: 1.3rem;
+  font-family: Garamond, serif;
+  color: transparent;
+  text-shadow: 0px 1.5px 1.1px rgba(16, 22, 10, 0.918);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+}
+
+#computer-selection {
+  margin: 0rem 1.8rem 0rem 1.8rem;
+  font-size: 1.3rem;
+  font-family: Garamond, serif;
+  color: transparent;
+  text-shadow: 0px 1.5px 1.1px rgba(16, 22, 10, 0.918);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+}
+
+#result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 3rem 0rem 0rem 0rem;
+  font-size: 1.3rem;
+  text-shadow: 0px 1.5px 1.1px rgba(16, 22, 10, 0.918);
+}
+
+#play-again-button {
+  font-family: Garamond, serif;
+  color: transparent;
+  text-shadow: 0px 0.5px 1px rgba(16, 22, 10, 0.918);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  background-color: transparent;
+  border-color: transparent;
+  margin: 2rem 0rem 0rem 0rem;
+  font-size: 1.3rem;
+}
+
+footer {
+  text-align: center;
+  font-family: Garamond, serif;
+  color: transparent;
+  text-shadow: 0px 1px 1.2px rgba(16, 22, 10, 0.918);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+}

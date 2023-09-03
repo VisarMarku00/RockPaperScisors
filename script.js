@@ -147,6 +147,7 @@ function pressPlayAgainButton() {
     pcWins = 0;
     addScore();
     resultDiv.replaceChildren();
+    clearSelectionText();
     enableButtons(selectButtons);
   });
 }
